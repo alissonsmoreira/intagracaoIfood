@@ -1,0 +1,19 @@
+Eventos Obrigatórios:
+
+O aplicativo deve ser capaz de:
+
+Fazer requests no endpoint de polling regularmente a cada 30 segundos;
+Enviar /acknowledgment para todos os eventos recebidos imediatamente após a request de polling;
+Exibir o status da loja (Aberta/Fechada) na tela do aplicativo;
+Receber, confirmar e despachar um pedido Delivery / IMMEDIATE;
+Receber, confirmar e despachar um pedido Delivery / Agendado;
+Receber e cancelar um pedido Delivery / IMMEDIATE;
+Receber, confirmar e avisar que está pronto um pedido Na Mesa;
+Receber, confirmar e avisar que está pronto um pedido Pra Retirar;
+Receber pedidos com pagamento em cartão e exibir detalhes do tipo de pagamento, como bandeira;
+Receber pedidos com pagamento em dinheiro e exibir o valor do troco na tela e/ou comanda impressa;
+Receber pedidos com cupons (vouchers) e exibir o valor e o responsável pelo subsídio (iFood / Loja);
+Exibir observações dos itens na tela e/ou comanda impressa (Ex: Retirar cebola);
+Atualizar o status de um pedido cancelado pelo cliente ou pelo iFood;
+Atualizar o status de um pedido que pode ter sido confirmado/cancelado por outro aplicativo como por exemplo o Gestor de Pedidos;
+Receber um mesmo evento mais de uma vez no polling e descartá-lo caso esse evento tenha sido entregue mais de uma vez.

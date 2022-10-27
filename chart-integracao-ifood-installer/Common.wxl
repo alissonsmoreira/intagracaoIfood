@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WixLocalization Culture="pt-BR" xmlns="http://schemas.microsoft.com/wix/2006/localization">
+  
+  <String Id="Company">Daniel e Alisson Sistemas</String>
+
+  <String Id="ProductName_x86">Integrador Chart Food (32bit)</String>
+  <String Id="ProductName_x64">Integrador Chart Food (64bit)</String>
+  
+  <String Id="Description">Interface de integração com a API do IFood</String>
+  <String Id="Keywords">api,ifood,integracao</String>
+
+  <String Id="ProductNameFolder">Integrador Chart Food</String>
+
+  <String Id="ServiceName">IntegradorChartFoodService</String>
+  
+  <String Id="Language">1033</String>
+  
+  <String Id="DowngradeErrorMessage">Uma versão mais recente do [ProductName] já está instalada.</String>
+</WixLocalization>

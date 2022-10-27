@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+
+  <!-- Give product a unique ID per platform -->
+  <?if $(var.Platform)=x64 ?>
+  <?define ProductCode = "{C9EAEA2D-74D7-4950-9209-783B9671A9A4}" ?>
+  <?else?>
+  <?define ProductCode = "{E70AFA4E-679D-4562-8F5F-D14C05BB1D54}" ?>
+  <?endif?>
+
+  <?define UpgradeCode = "{7350D0A6-C514-460A-BBF4-7A7FAB0BF88D}" ?>
+  
+	<Product Id="$(var.ProductCode)" 
+           Name="!(loc.ProductName_$(var.Platform))" 
+           Language="!(loc.Language)" 
+           Version="$(var.BuildVersion)" 
+           Manufacturer="!(loc.Company)" 
+           UpgradeCode="$(var.UpgradeCode)"
+           Codepage="1252">
+    
+		<Package InstallerVersion="200" 
+             Compressed="yes" 
+             InstallScope="perMachine" 
+             InstallPrivileges="elevated"
+             Platform="$(var.Platform)"
+             Manufacturer="!(loc.Company)"
+             Description="!(loc.Description)"
+             Keywords="!(loc.Keywords)"
+             Languages="!(loc.Language)" 
+             />
+
+		<MajorUpgrade DowngradeErrorMessage="!(loc.DowngradeErrorMessage)" />
+    
+		<MediaTemplate EmbedCab="yes"/>
+
+    <!-- Define main app icon -->
+    <Icon Id="icon.ico" SourceFile="$(var.chart-integracao-ifood-tray.ProjectDir)\icon.ico" />
+
+    <!-- Use the icon.ico icon for this installer (shows up in Add/Remove programs) -->
+    <Property Id="ARPPRODUCTICON">icon.ico</Property>
+
+    <UIRef Id="WixUI_Minimal" />
+    <WixVariable Id="WixUILicenseRtf" Value="$(var.ProjectDir)\assets\License.rtf"/>
+
+		<!-- Define components, shortcuts, files etc... for installer -->
+		<Feature Id="ProductFeature" Title="!(loc.ProductName_$(var.Platform))" Level="1">
+      <ComponentGroupRef Id="ProductComponents" />
+      <ComponentGroupRef Id="PublishedComponents" />
+      <ComponentGroupRef Id="TrayPublishedComponents" />
+    </Feature>
+	</Product>
+  
+</Wix>

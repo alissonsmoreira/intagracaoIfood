@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+
+  <Fragment>
+
+    <!-- Product Components -->
+    <ComponentGroup Id="ProductComponents">
+
+      <!-- Shortcut -->
+      <ComponentRef Id="MainAppShortcut" />
+      <ComponentRef Id="AppService"/>
+
+    </ComponentGroup>
+
+    <!-- Installed files -->
+    <DirectoryRef Id="INSTALLFOLDER" FileSource="..\chart-integracao-ifood-tray\bin\$(var.Configuration)\net5.0-windows\win-$(var.Platform)\publish\">
+
+      <!-- Shortcut to main application -->
+      <Component Id="MainAppShortcut" Guid="{4F2414AE-16D8-4FC9-91FF-B4067478C0A5}">
+
+        <Shortcut Id="MainAppShortcut"
+                  Name="!(loc.ProductName_$(var.Platform))"
+                  Target="[INSTALLFOLDER]chart-integracao-ifood-tray.exe"
+                  Directory="InstallProgramMenuFolder"
+                  WorkingDirectory="INSTALLFOLDER"
+                  Icon="icon.ico"
+                  />
+
+        <!-- Our unique key for this component/shortcut -->
+        <RegistryValue Id="RegShortcutKey" Root="HKCU" Key="SOFTWARE\$(loc.ProductNameFolder)" Name="Shortcut" Value="1" Type="integer" KeyPath="yes" />
+
+        <!--Remove start menu items -->
+        <RemoveFolder Id="RemoveStartMenu" Directory="InstallProgramMenuFolder" On="uninstall" />
+
+      </Component>
+
+    </DirectoryRef>
+
+    <!-- Installed service files -->
+    <DirectoryRef Id="INSTALLSERVICEFOLDER" FileSource="..\chart-integracao-ifood\bin\$(var.Configuration)\net5.0\win-$(var.Platform)\publish\">
+
+      <!-- Shortcut to main application -->
+      <Component Id="AppService" Guid="{6A1E46CA-9264-43CB-951B-E08DFB4B6BCE}">
+
+        <File Id="ChartIntegracaoIfoodService"
+          Name="chart-integracao-ifood.exe"
+          DiskId="1"
+          Source="$(var.ServiceBasePath)\chart-integracao-ifood.exe"
+          Vital="yes"
+          KeyPath="yes" />
+
+        <ServiceInstall Id="ServiceInstaller"
+                Type="ownProcess"
+                Vital="yes"
+                Name="!(loc.ServiceName)"
+                DisplayName="!(loc.ProductName_$(var.Platform))"
+                Description="!(loc.Description)"
+                Start="auto"
+                Account="NT AUTHORITY\LocalService"
+                ErrorControl="normal"
+                Interactive="no" />
+
+        <ServiceControl Id="StartService"
+                        Stop="both"
+                        Start="install"
+                        Remove="uninstall"
+                        Name="!(loc.ServiceName)"
+                        Wait="no" />
+
+      </Component>
+
+    </DirectoryRef>
+
+  </Fragment>
+
+</Wix>

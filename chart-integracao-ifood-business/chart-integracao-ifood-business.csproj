@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>chart_integracao_ifood_business</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\chart-integracao-ifood-dal\chart-integracao-ifood-dal.csproj" />
+    <ProjectReference Include="..\chart-integracao-ifood-infrastructure\chart-integracao-ifood-infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>
